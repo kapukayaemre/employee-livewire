@@ -66,6 +66,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-flex justify-content-center">
+                {{ $users->links("pagination::bootstrap-4") }}
+            </div>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

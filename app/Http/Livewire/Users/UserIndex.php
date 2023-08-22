@@ -5,9 +5,11 @@ namespace App\Http\Livewire\Users;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class UserIndex extends Component
 {
+    use WithPagination;
     public $search = "";
     public $username;
     public $firstName;
@@ -95,9 +97,9 @@ class UserIndex extends Component
 
     public function render()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         if (strlen($this->search) > 2) {
-            $users = User::where("username", 'like', "%{$this->search}%")->get();
+            $users = User::where("username", 'like', "%{$this->search}%")->paginate(5);
         }
         return view('livewire.users.user-index', ["users" => $users])->layout("layouts.main");
     }
