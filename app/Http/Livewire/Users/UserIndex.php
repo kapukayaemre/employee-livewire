@@ -36,10 +36,10 @@ class UserIndex extends Component
             "email"      => $this->email,
             "password"   => Hash::make($this->password)
         ]);
-
         $this->reset();
-
         $this->dispatchBrowserEvent("closeModal");
+
+        session()->flash("user-message", "User successfully created");
     }
 
     public function showEditModal($id)
@@ -76,6 +76,15 @@ class UserIndex extends Component
         $user->update($validated);
         $this->reset();
         $this->dispatchBrowserEvent("closeModal");
+        session()->flash("user-message", "User successfully updated");
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        session()->flash("user-message", "User successfully deleted");
     }
 
     public function closeModal()
