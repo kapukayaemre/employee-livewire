@@ -22,6 +22,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin.min.css') }}" rel="stylesheet">
+    @livewireStyles
 
 </head>
 
@@ -135,7 +136,6 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 {{ $slot }}
-
             </div>
             <!-- /.container-fluid -->
 
@@ -171,7 +171,8 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/sb-admin.min.js') }}"></script>
-
+@stack('modals')
+@livewireScripts
 </body>
 
 </html>
