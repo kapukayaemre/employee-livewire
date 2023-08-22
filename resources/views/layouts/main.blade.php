@@ -175,14 +175,8 @@
 @livewireScripts
 
 <script>
-    window.addEventListener('closeModal', event => {
-        $("#exampleModal").modal("hide");
-    })
-</script>
-
-<script>
-    window.addEventListener('showModal', event => {
-        $("#exampleModal").modal("show");
+    window.addEventListener('modal', event => {
+        $(event.detail.modalId).modal(event.detail.actionModal);
     })
 </script>
 

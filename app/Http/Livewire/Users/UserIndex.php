@@ -39,9 +39,16 @@ class UserIndex extends Component
             "password"   => Hash::make($this->password)
         ]);
         $this->reset();
-        $this->dispatchBrowserEvent("closeModal");
+        $this->dispatchBrowserEvent("modal", ["modalId" => "#userModal", "actionModal" => "hide"]);
 
         session()->flash("user-message", "User successfully created");
+    }
+
+    public function showUserModal()
+    {
+        $this->reset();
+        $this->dispatchBrowserEvent("modal", ["modalId" => "#userModal", "actionModal" => "show"]);
+
     }
 
     public function showEditModal($id)
@@ -53,7 +60,7 @@ class UserIndex extends Component
         /*** Load User */
         $this->loadUser();
         /*** Show Modal */
-        $this->dispatchBrowserEvent("showModal");
+        $this->dispatchBrowserEvent("modal", ["modalId" => "#userModal", "actionModal" => "show"]);
     }
 
     public function loadUser()
@@ -77,7 +84,7 @@ class UserIndex extends Component
         $user = User::find($this->userId);
         $user->update($validated);
         $this->reset();
-        $this->dispatchBrowserEvent("closeModal");
+        $this->dispatchBrowserEvent("modal", ["modalId" => "#userModal", "actionModal" => "hide"]);
         session()->flash("user-message", "User successfully updated");
     }
 
@@ -91,7 +98,7 @@ class UserIndex extends Component
 
     public function closeModal()
     {
-        $this->dispatchBrowserEvent("closeModal");
+        $this->dispatchBrowserEvent("modal", ["modalId" => "#userModal", "actionModal" => "hide"]);
         $this->reset();
     }
 
