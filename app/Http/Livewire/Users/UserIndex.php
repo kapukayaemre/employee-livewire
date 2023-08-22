@@ -9,7 +9,13 @@ use Livewire\Component;
 class UserIndex extends Component
 {
     public $search = "";
-    public $username, $firstName, $lastName, $email, $password;
+    public $username;
+    public $firstName;
+    public $lastName;
+    public $email;
+    public $password;
+    public $userId;
+    public $editMode = false;
 
     protected $rules = [
         "username"  => "required",
@@ -24,16 +30,58 @@ class UserIndex extends Component
         $this->validate();
 
         User::create([
-            "username"  => $this->username,
+            "username"   => $this->username,
             "first_name" => $this->firstName,
             "last_name"  => $this->lastName,
-            "email"     => $this->email,
-            "password"  => Hash::make($this->password)
+            "email"      => $this->email,
+            "password"   => Hash::make($this->password)
         ]);
 
         $this->reset();
 
         $this->dispatchBrowserEvent("closeModal");
+    }
+
+    public function showEditModal($id)
+    {
+        $this->reset();
+        $this->editMode = true;
+        /*** Find User */
+        $this->userId = $id;
+        /*** Load User */
+        $this->loadUser();
+        /*** Show Modal */
+        $this->dispatchBrowserEvent("showModal");
+    }
+
+    public function loadUser()
+    {
+        $user            = User::find($this->userId);
+        $this->username  = $user->username;
+        $this->firstName = $user->first_name;
+        $this->lastName  = $user->last_name;
+        $this->email     = $user->email;
+    }
+
+    public function updateUser()
+    {
+        $validated = $this->validate([
+            "username"  => "required",
+            "firstName" => "required",
+            "lastName"  => "required",
+            "email"     => "required"
+        ]);
+
+        $user = User::find($this->userId);
+        $user->update($validated);
+        $this->reset();
+        $this->dispatchBrowserEvent("closeModal");
+    }
+
+    public function closeModal()
+    {
+        $this->dispatchBrowserEvent("closeModal");
+        $this->reset();
     }
 
     public function render()

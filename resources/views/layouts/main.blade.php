@@ -180,6 +180,12 @@
     })
 </script>
 
+<script>
+    window.addEventListener('showModal', event => {
+        $("#exampleModal").modal("show");
+    })
+</script>
+
 </body>
 
 </html>
