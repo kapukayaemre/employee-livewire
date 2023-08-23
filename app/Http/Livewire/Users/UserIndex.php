@@ -40,7 +40,6 @@ class UserIndex extends Component
         ]);
         $this->reset();
         $this->dispatchBrowserEvent("modal", ["modalId" => "#userModal", "actionModal" => "hide"]);
-
         session()->flash("user-message", "User successfully created");
     }
 
