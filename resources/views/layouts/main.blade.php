@@ -53,15 +53,15 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSystem"
+            <a class="nav-link {{ Route::is("countries.index") || Route::is("states.index") ? "" : "collapsed" }}" href="#" data-toggle="collapse" data-target="#collapseSystem"
                aria-expanded="true" aria-controls="collapseSystem">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>System Management</span>
             </a>
-            <div id="collapseSystem" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseSystem" class="collapse {{ Route::is("countries.index") || Route::is("states.index") ? "show" : "" }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route("countries.index") }}">Country</a>
-                    <a class="collapse-item" href="">State</a>
+                    <a class="collapse-item {{ Route::is("countries.index") ? "active" : "" }}" href="{{ route("countries.index") }}">Country</a>
+                    <a class="collapse-item {{ Route::is("states.index") ? "active" : "" }}" href="{{ route("states.index") }}">State</a>
                     <a class="collapse-item" href="">Department</a>
                     <a class="collapse-item" href="">City</a>
                 </div>
@@ -72,14 +72,14 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+            <a class="nav-link {{ Route::is("users.index") ? "" : "collapsed" }}" href="#" data-toggle="collapse" data-target="#collapseUser"
                aria-expanded="true" aria-controls="collapseUser">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Users Management</span>
             </a>
-            <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseUser" class="collapse {{ Route::is("users.index") ? "show" : "" }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route("users.index") }}">Users</a>
+                    <a class="collapse-item {{ Route::is("users.index") ? "active" : "" }}" href="{{ route("users.index") }}">Users</a>
                     <a class="collapse-item" href="cards.html">Role</a>
                     <a class="collapse-item" href="cards.html">Permission</a>
                 </div>
