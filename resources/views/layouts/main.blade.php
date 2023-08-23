@@ -53,16 +53,16 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link {{ Route::is("countries.index") || Route::is("states.index") || Route::is("cities.index") ? "" : "collapsed" }}" href="#" data-toggle="collapse" data-target="#collapseSystem"
+            <a class="nav-link {{ Route::is("countries.index") || Route::is("states.index") || Route::is("cities.index") || Route::is("departments.index") ? "" : "collapsed" }}" href="#" data-toggle="collapse" data-target="#collapseSystem"
                aria-expanded="true" aria-controls="collapseSystem">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>System Management</span>
             </a>
-            <div id="collapseSystem" class="collapse {{ Route::is("countries.index") || Route::is("states.index") || Route::is("cities.index") ? "show" : "" }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseSystem" class="collapse {{ Route::is("countries.index") || Route::is("states.index") || Route::is("cities.index") || Route::is("departments.index") ? "show" : "" }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item {{ Route::is("countries.index") ? "active" : "" }}" href="{{ route("countries.index") }}">Country</a>
                     <a class="collapse-item {{ Route::is("states.index") ? "active" : "" }}" href="{{ route("states.index") }}">State</a>
-                    <a class="collapse-item" href="">Department</a>
+                    <a class="collapse-item {{ Route::is("departments.index") ? "active" : "" }}" href="{{ route("departments.index") }}">Department</a>
                     <a class="collapse-item {{ Route::is("cities.index") ? "active" : "" }}" href="{{ route("cities.index") }}">City</a>
                 </div>
             </div>
